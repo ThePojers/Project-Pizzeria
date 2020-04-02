@@ -76,26 +76,27 @@
       const thisProduct = this;
 
       /* find the clickable trigger (the element that should react to clicking) */
-      const clickableElement = document.querySelector(select.menuProduct.clickable);
+      const clickableElement = thisProduct.element.querySelector(select.menuProduct.clickable);
       console.log(clickableElement);
       /* START: click event listener to trigger */
-      clickableElement.addEventListener('click', function(){
+      clickableElement.addEventListener('click', function() {
         /* prevent default action for event */
         event.preventDefault();
-        /* toggle active class on element of thisProduct */
+        /* toggle active class on element of thisProduct */ 
         thisProduct.element.classList.toggle('active');
         /* find all active products */
-        const activeProduct = document.querySelectorAll('article.active'); 
-        console.log(activeProduct);
+        const activeProducts = document.querySelectorAll('article.active'); 
+        console.log(activeProducts);
         /* START LOOP: for each active product */
-        for(let activeManagement in activeProduct)
+        for (let activeProduct of activeProducts ) {
           /* START: if the active product isn't the element of thisProduct */
-          if(!activeProduct[activeManagement]){
-            console.log(activeProduct)
+          if(activeProduct != thisProduct.element){
+            console.log(thisProduct.element);
             /* remove class active for the active product */
-            activeManagement.classList.remove('active');
+            activeProduct.classList.remove('active');
           /* END: if the active product isn't the element of thisProduct */
           }
+        }
         /* END LOOP: for each active product */
       });
       /* END: click event listener to trigger */
@@ -126,17 +127,7 @@
       thisApp.initData();
       
       console.log('ThisApp.data:', thisApp.data);
-      thisApp.initMenu();
-      const person = {
-        name: 'John',
-        surname: 'Doe',
-        age: 35
-      };
-      
-      for( let key in person ){
-        console.log('Value at key "' + key + '" in person: ' + person[key]);
-      }
-      
+      thisApp.initMenu(); 
     },
   };
 
