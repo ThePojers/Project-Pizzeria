@@ -137,7 +137,7 @@
       const formData = utils.serializeFormToObject(thisProduct.form);
       /* set variable price to equal thisProduct.data.price */
       let price = thisProduct.data.price;
-      let images = thisProduct.element.querySelectorAll(select.menuProduct.imageInsider);
+      
       /* START LOOP: for each paramId in thisProduct.data.params */
       for( let paramId in thisProduct.data.params){
         /* save the element in thisProduct.data.params with key paramId as const param */
@@ -159,6 +159,7 @@
           /* deduct price of option from price */
             price = price - option.price;
           } 
+          let images =  thisProduct.imageWrapper.querySelectorAll(`.${paramId}-${optionId}`);
           console.log(images);
           if(optionSelected){
             for( let image of images){
