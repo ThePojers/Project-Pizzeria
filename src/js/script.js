@@ -194,6 +194,7 @@
       thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
+
       console.log('amountWigdet:', thisWidget);
       console.log('constructor argument:', element);
       
@@ -208,11 +209,18 @@
     setValue(value){
       const thisWidget = this; 
       const newValue = parseInt(value);
+      console.log(value);
+      console.log(newValue);
+      console.log(thisWidget.value);
       // TODO: add validations
-      if (newValue != thisWidget.value && newValue >= settings.amountWidget.defaultMin && newValue <=  settings.amountWidget.defaultMax) {
-        thisWidget.value = newValue;
+      if (newValue >= settings.amountWidget.defaultMin && newValue <=  settings.amountWidget.defaultMax) {
+        thisWidget.value = newValue; 
+        thisWidget.input.value = value;
         thisWidget.annouce();
       } 
+      else{
+        thisWidget.input.value = thisWidget.value;
+      }
     }
     initActions(){
       const thisWidget = this;
@@ -221,11 +229,11 @@
       });
       thisWidget.linkDecrease.addEventListener('click', function(){
         event.preventDefault();
-        thisWidget.setValue(thisWidget.value-1);
+        thisWidget.setValue(thisWidget.value - 1);
       });
       thisWidget.linkIncrease.addEventListener('click', function(){
         event.preventDefault();
-        thisWidget.setValue(thisWidget.value+1);
+        thisWidget.setValue(thisWidget.value + 1);
       });
     }
     annouce(){
