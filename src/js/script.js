@@ -53,7 +53,7 @@
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   };
 
-  class Product{
+  class Product {
     constructor(id, data){
       const thisProduct = this;
       thisProduct.id = id;
@@ -180,14 +180,14 @@
     }
     initAmountWidget(){
       const thisProduct = this;
-      thisProduct.amountWidget = new amountWidget(thisProduct.amountWidgetElem);
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
       thisProduct.amountWidgetElem.addEventListener('updated', function(){
         thisProduct.processOrder();
       });
     }
   }
   
-  class amountWidget{
+  class AmountWidget {
     constructor (element){
       const thisWidget = this;
       thisWidget.getElements(element);
