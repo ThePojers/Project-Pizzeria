@@ -95,6 +95,7 @@
       thisProduct.initOrderForm();
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
+     
       
       // console.log('new product:', thisProduct);
     }
@@ -162,6 +163,7 @@
       thisProduct.cartButton.addEventListener('click', function(event){
         event.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
     }
     processOrder(){
@@ -169,8 +171,9 @@
       /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
       const formData = utils.serializeFormToObject(thisProduct.form);
       /* set variable price to equal thisProduct.data.price */
+      thisProduct.params = {};
+      console.log(thisProduct.params);
       let price = thisProduct.data.price;
-      
       /* START LOOP: for each paramId in thisProduct.data.params */
       for( let paramId in thisProduct.data.params){
         /* save the element in thisProduct.data.params with key paramId as const param */
@@ -195,6 +198,14 @@
           let images =  thisProduct.imageWrapper.querySelectorAll(`.${paramId}-${optionId}`);
           // console.log(images);
           if(optionSelected){
+            if(!thisProduct.params[paramId]){
+              thisProduct.params[paramId] = {
+                label: param.label,
+                option: {},
+              };
+            }
+            thisProduct.params[paramId].options[optionId] = option.label;
+           
             for( let image of images){
               // console.log(image);
               image.classList.add(classNames.menuProduct.imageVisible);
@@ -206,8 +217,12 @@
           }
         }
       }
-      price *= thisProduct.amountWidget.value;
-      thisProduct.priceElem.innerHTML = price; 
+      /* multiply price by amount */
+      thisProduct.priceSingle = price;
+      thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
+
+      /* set the contents of thisProduct.priceElem to be the value of variable price */
+      thisProduct.priceElem.innerHTML = thisProduct.price;
     }
     initAmountWidget(){
       const thisProduct = this;
@@ -215,6 +230,11 @@
       thisProduct.amountWidgetElem.addEventListener('updated', function(){
         thisProduct.processOrder();
       });
+    }
+    addToCart(){
+      const thisProduct = this;
+      console.log(thisProduct);
+      app.cart.add(thisProduct);
     }
   }
   
@@ -275,11 +295,11 @@
     }
   }
 
-  class Cart{
+  class Cart {
     constructor(element){
       const thisCart = this;
       thisCart.products = [];
-      console.log(element)
+      console.log(element);
       
       thisCart.getElements(element);
       thisCart.initActions();
@@ -301,6 +321,11 @@
         console.log(thisCart.dom);
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
+    }
+
+    add(menuProduct){
+      // const thisCart = this
+      console.log('adding product', menuProduct);
     }
   }
 
