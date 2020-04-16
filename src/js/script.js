@@ -201,7 +201,7 @@
             if(!thisProduct.params[paramId]){
               thisProduct.params[paramId] = {
                 label: param.label,
-                option: {},
+                options: {},
               };
             }
             thisProduct.params[paramId].options[optionId] = option.label;
