@@ -333,13 +333,10 @@
     add(menuProduct){
       const thisCart = this;
       console.log('adding product', menuProduct);
-
-      const generatedHTML = templates.cartProduct(thisCart.menuProduct);
+      const generatedHTML = templates.cartProduct(menuProduct);
       console.log(generatedHTML);
-
       thisCart.generatedDOM = utils.createDOMFromHTML(generatedHTML);
       console.log(thisCart.generatedDOM);
-
       thisCart.dom.productList.appendChild(thisCart.generatedDOM);
     }
   }
