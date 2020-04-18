@@ -295,7 +295,9 @@
     annouce(){
       const thisWidget = this;
 
-      const event = new Event('updated');
+      const event = new CustomEvent('updated', {
+        bubbles: true
+      });
       thisWidget.element.dispatchEvent(event);
     }
   }
@@ -309,7 +311,7 @@
       
       thisCart.getElements(element);
       thisCart.initActions();
-      thisCart.update();
+      
       // console.log('new Cart', thisCart);
     }
 
@@ -321,8 +323,10 @@
       thisCart.dom.toggleTrigger = element.querySelector(select.cart.toggleTrigger);
       // console.log(thisCart.dom.toggleTrigger);
       thisCart.dom.productList = document.querySelector(select.cart.productList);
-      
-      
+      thisCart.renderTotalsKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
+      for(let key of thisCart.renderTotalsKeys){
+        thisCart.dom[key] = thisCart.dom.wrapper.querySelectorAll(select.cart[key]);
+      } 
     }
 
     initActions(){
@@ -330,6 +334,9 @@
       thisCart.dom.toggleTrigger.addEventListener('click', function(){
         // console.log(thisCart.dom);
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+      });
+      thisCart.dom.productList.addEventListener('updated', function(){
+        thisCart.update();
       });
     }
 
@@ -343,6 +350,7 @@
       thisCart.dom.productList.appendChild(thisCart.generatedDOM);
       thisCart.products.push(new CartProduct(menuProduct, thisCart.generatedDOM));
       // console.log('thisCart.products', thisCart.products);
+      thisCart.update();
     }
     update(){
       console.log('HALO1');
@@ -351,10 +359,17 @@
       thisCart.subtotalPrice = 0;
       console.log(thisCart.products);
       for( let product of thisCart.products){
-        console.log('HALO');
-        console.log(thisCart.products);
-        thisCart.subtotalPrice = product;
-        
+        thisCart.subtotalPrice += product.price;
+        thisCart.totalNumber += product.amount;
+      }
+      thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
+      console.log('thsCart.totalNumber', thisCart.totalNumber);
+      console.log('thsCart.subtotalPrice', thisCart.subtotalPrice);
+      console.log('thsCart.totalPrice', thisCart.totalPrice);
+      for(let key of thisCart.renderTotalsKeys){
+        for(let elem of thisCart.dom[key]){
+          elem.innerHTML = thisCart[key];
+        }
       }
     }
   }
