@@ -414,10 +414,11 @@
         totalAmound:  thisCart.totalNumber,
         subtotalPrice: thisCart.subtotalPrice,
         delieryFree: thisCart.deliveryFee,
-        dataOfProducts: thisCart.objectWithData,
+        products: [],
+      
       };
       for(let product of thisCart.products){
-        thisCart.objectWithData =  product.getData();
+        payload.products =  product.getData();
       }
       const options = {
         method: 'POST',
