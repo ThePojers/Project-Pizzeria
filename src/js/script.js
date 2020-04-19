@@ -418,7 +418,9 @@
       
       };
       for(let product of thisCart.products){
-        payload.products =  product.getData();
+        product.getData();
+        const dataOfProduct = product.getData();
+        payload.products.push(dataOfProduct);
       }
       const options = {
         method: 'POST',
