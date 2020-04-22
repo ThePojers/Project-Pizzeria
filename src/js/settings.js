@@ -1,4 +1,6 @@
 /* global Handlebars */ // eslint-disable-line no-unused-vars
+
+
 export const select = {
   templateOf: {
     menuProduct: '#template-menu-product',
@@ -81,6 +83,7 @@ export const settings = {
 };
 
 export const templates = {
+  
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   // CODE ADDED START
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
