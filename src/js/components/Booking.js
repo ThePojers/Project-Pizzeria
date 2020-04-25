@@ -1,11 +1,10 @@
 import { templates, select } from '../settings.js';
 import utils from '../utils.js';
 import AmountWidget from './AmountWidget.js';
-
+import DataPicker from './DataPicker.js';
 
 class Booking {
   constructor(element){
-    console.log(element);
 
     const thisBooking = this;
     thisBooking.render(element);
@@ -17,20 +16,19 @@ class Booking {
     thisBooking.element = utils.createDOMFromHTML(generatedHTML);
     const menuContainer = document.querySelector(select.containerOf.booking);
     menuContainer.appendChild(thisBooking.element);
-    console.log('thisBooking.element',thisBooking.element);
-    console.log('element', element);
     thisBooking.dom = {};
     thisBooking.dom.wrapper = element;
     thisBooking.dom.peopleAmount = element.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = element.querySelector(select.booking.hoursAmount);
-    console.log('thisBooking.dom.peopleAmount', thisBooking.dom.peopleAmount);
-    console.log('thisBooking.dom.hoursAmount',thisBooking.dom.hoursAmount);
+    thisBooking.dom.dataPicker = element.querySelector(select.widgets.datePicker.wrapper);
+
   }
   initWidgets(){
     const thisBooking = this;
     console.log(thisBooking);
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
+    thisBooking.dataPicker = new DataPicker(thisBooking.dom.dataPicker);
   }   
 }
 export default Booking;
