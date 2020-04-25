@@ -1,5 +1,6 @@
+/* global flatpickr */
+
 import BaseWidget from './BaseWidget.js';
-// import flatpickr from 'flatpickr';
 import utils from '../utils.js';
 import { select, settings } from '../settings.js';
 
@@ -18,12 +19,29 @@ class DataPicker extends BaseWidget {
   initPlugin(){
     const thisWidget = this;
     thisWidget.minDate = new Date(thisWidget.value);
-    thisWidget.maxDate = thisWidget.minDate + settings.datePicker.maxDaysInFuture;
-    // flatpickr(element, options);
-    // zainicjowac plugin flatpickr 
+    thisWidget.maxDate = utils.addDays(thisWidget.minDate, settings.datePicker.maxDaysInFuture);
+    console.log(thisWidget.maxDate);
+    console.log(thisWidget.minDate);
+    console.log(thisWidget.value);
     flatpickr(thisWidget.dom.input, {
-
+      defaultDate: thisWidget.minDate,
+      minDate:  thisWidget.minDate,
+      maxDate: thisWidget.maxDate,
+      'disable': [
+        function(date) {
+        // return true to disable
+          return (date.getDay() === 1);
+        }
+      ],
+      'locale': {
+        'firstDayOfWeek': 1 // start week on Monday
+      },
+      onChange: function(selectedDates, dateStr){
+        thisWidget.value = dateStr; 
+        console.log(thisWidget.value);
+      }
     });
+
   }
   parseValue(value){
     return value;
