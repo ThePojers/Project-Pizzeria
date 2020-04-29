@@ -88,6 +88,7 @@ class Product {
   }
   processOrder(){
     const thisProduct = this;
+   
     /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
     const formData = utils.serializeFormToObject(thisProduct.form);
     /* set variable price to equal thisProduct.data.price */
@@ -125,6 +126,7 @@ class Product {
             };
           }
           thisProduct.params[paramId].options[optionId] = option.label;
+          
         
           for( let image of images){
             // console.log(image);
