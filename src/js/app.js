@@ -28,10 +28,10 @@ const app = {
     
     for(let link of thisApp.navLinks){
       link.addEventListener('click', function(){
-        const clickedElemnent = this;
+        const clickedElement = this;
         event.preventDefault();
         // get page id from href attribute
-        const Id = clickedElemnent.getAttribute('href').replace('#', '');
+        const Id = clickedElement.getAttribute('href').replace('#', '');
         // run thisApp.activatePage with that ID
         thisApp.activatePage(Id);
 
@@ -60,7 +60,6 @@ const app = {
   }, 
   initMenu: function(){
     const thisApp = this; 
-    // console.log('ThisApp.data:', thisApp.data);
     for(let productData in thisApp.data.products){
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
     }
@@ -73,21 +72,14 @@ const app = {
     fetch(url).then(function(rawResponse){
       return rawResponse.json();
     }).then(function(parsedResponse){
-      console.log('parsedResponse', parsedResponse);
       thisApp.data.products = parsedResponse;
       thisApp.initMenu(); 
     });
   },
   init: function(){
     const thisApp = this;
-    // console.log('*** App starting ***');
-    // console.log('thisApp:', thisApp);
-    // console.log('classNames:', classNames);
-    // console.log('settings:', settings);
-    // console.log('templates:', templates);
     thisApp.initPages();
     thisApp.initData();
-    console.log('ThisApp.data:', thisApp.data);
     thisApp.initCart();
     thisApp.initBooking();
   },
