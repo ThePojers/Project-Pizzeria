@@ -261,6 +261,7 @@
       "date": "2020-05-02" ,
       "hour": "19:00",
       "table": 1,
+      "partyTable": [1, 2],
       "ppl": 4,
       "starters": ["water"]
 

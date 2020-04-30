@@ -72,9 +72,11 @@ class Booking {
     const thisBooking = this;
 
     thisBooking.booked = {};
-
+    
     for(let item of bookings){
-      thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
+      for(let table of  item.partyTable){
+        thisBooking.makeBooked(item.date, item.hour, item.duration, table);
+      }
     }
     console.log(thisBooking.booked);
 
@@ -116,6 +118,7 @@ class Booking {
 
       thisBooking.booked[date][hourBlock].push(table);
     }
+   
   }
 
   render(element){
@@ -242,6 +245,8 @@ class Booking {
           &&
           thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
         ){
+          const dupa = 'dupa';
+          console.log(dupa);
         } else {
           table.classList.add(classNames.booking.clickedTable);
           thisBooking.table.push(tableId);
