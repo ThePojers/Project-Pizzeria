@@ -54,6 +54,7 @@ class Cart {
       thisCart.sendOrder();
 
     });
+    console.log(thisCart.dom.phone);
   }
 
   add(menuProduct){
@@ -103,6 +104,7 @@ class Cart {
     console.log(cartProduct);
   }
   sendOrder(){
+    
     const thisCart = this;
     const url = settings.db.url + '/' + settings.db.order;
     const payload = {
