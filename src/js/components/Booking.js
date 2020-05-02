@@ -225,6 +225,7 @@ class Booking {
     thisBooking.bookButton.addEventListener('click', function(){
       event.preventDefault();
       thisBooking.sendOrder();
+      
     });
 
     for(let table of thisBooking.dom.tables){
@@ -311,7 +312,8 @@ class Booking {
     }).then(function(parsedResponse){
       console.log('parsedResponse', parsedResponse);
     });
-
+    setTimeout(function(){window.location.reload();}, 1000);
   }
+  
 }
 export default Booking;

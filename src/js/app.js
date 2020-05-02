@@ -2,8 +2,15 @@ import {settings, select, classNames} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import MainPage from './components/MainPage.js';
 
 const app = {
+  initMainPages: function(){
+    const thisApp = this; 
+    thisApp.findMainPageContainer = document.querySelector(select.containerOf.mainPage);
+
+    thisApp.mainPageContainer = new MainPage(thisApp.findMainPageContainer);
+  },
   initBooking: function(){
     const thisApp = this; 
     thisApp.findBookingContainer = document.querySelector(select.containerOf.booking);
@@ -12,9 +19,11 @@ const app = {
   },
   initPages: function(){
     const thisApp = this;
-    
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    thisApp.mainNav = document.querySelector(select.nav.mainNav);
+    thisApp.mainLink = document.querySelector(select.nav.mainPageLink);
+
     const idFromHash = window.location.hash.replace('#/', '');
     
     let pageMatchingHash = thisApp.pages[0].id;
@@ -26,17 +35,25 @@ const app = {
     }
     thisApp.activatePage(pageMatchingHash);
     
+    thisApp.mainLink.addEventListener('click', function(){
+      const clickedElement = this;
+      event.preventDefault();
+      const id = clickedElement.getAttribute('href').replace('#', '');
+      thisApp.activatePage(id);
+      window.location.hash = '#/' + id;
+    });
+
     for(let link of thisApp.navLinks){
       link.addEventListener('click', function(){
         const clickedElement = this;
         event.preventDefault();
         // get page id from href attribute
-        const Id = clickedElement.getAttribute('href').replace('#', '');
+        const id = clickedElement.getAttribute('href').replace('#', '');
         // run thisApp.activatePage with that ID
-        thisApp.activatePage(Id);
+        thisApp.activatePage(id);
 
         // change URL 
-        window.location.hash = '#/' + Id;
+        window.location.hash = '#/' + id;
       });
     }
   },
@@ -49,12 +66,19 @@ const app = {
     }
       
     /* add class "active" to matching links, remove from non-matching */
-    for(let link of  thisApp.navLinks){
-      link.classList.toggle(
-        classNames.nav.active,
-        link.getAttribute('href') == '#' + pageId
-      );
-    }
+    thisApp.mainLink.addEventListener('click', function(){
+      // delete from header navbars
+      thisApp.mainNav.classList.add(classNames.pages.nonActive);
+      thisApp.mainNav.classList.remove('main-nav');
+      // delete from header cart 
+      document.getElementById('cart').classList.add(classNames.pages.nonActive);
+    });
+    // for(let link of  thisApp.navLinks){
+    //   link.classList.toggle(
+    //     classNames.nav.active,
+    //     link.getAttribute('href') == '#' + pageId
+    //   );
+    // }
 
     
   }, 
@@ -82,6 +106,7 @@ const app = {
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.initMainPages();
   },
   initCart: function(){
     

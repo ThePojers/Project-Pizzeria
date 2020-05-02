@@ -1,0 +1,140 @@
+// GENERAL MAINPAGE 
+
+.logo a {
+  text-decoration: none;
+  color: white;
+}
+
+.row {
+    
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-con-page {
+  margin: ($base-size * 3.5) auto;
+  padding: ($base-size * 6) ($base-size * 4);
+  background: $color-light;
+  border-bottom: 1px solid lighten($color-dark, 70%);
+  border-radius: $radius;
+}
+
+// 1ST SECTION 
+
+.st-section p {
+  text-align: center;
+  margin-top: 40px;
+  color: white;
+  font-size: 25px;
+  font-family: $font-header;
+
+  &.lower-text{
+    font-size: 15px;
+    margin: 0 0 0 0;
+    margin-top: 1px;
+    font-family: $font-text
+  }
+
+  &.upper-text {
+    margin: 30px 0 0 0;
+  }
+}
+
+
+.order-pic {
+  background-size: cover;
+  background-image: url(../../images/mainPage/pizza-1.jpg);
+  width: 300px;
+  height: 120px;
+  border-radius: 5px;
+  margin-right: 3px;
+}
+
+.book-pic {
+  background-size: cover;
+  background-image: url(../../images/mainPage/pizza-2.jpg);
+  width: 300px;
+  height: 120px;
+  border-radius: 5px;
+}
+
+.opening-hours {
+  margin-top: 4px;
+  background-color: $color-main;
+  height: 120px;
+  border-radius: 5px;
+}
+
+// 2ND SECTION
+
+.square-pic{
+  background-size: cover;
+  background-image: url(../../images/mainPage/pizza-3.jpg);
+  width: 190px;
+  height: 190px;
+  border-radius: 5px;
+}
+
+.nd-section{
+  margin-top: 110px;
+}
+
+.commentary {
+  padding-left: 45px;
+
+  h3{
+
+    font-size: 14px;
+  }
+}
+
+.circles{
+  ul{
+    margin-top: 30px;
+    margin-left: 36%;
+    list-style: none;
+    li{
+      margin-left: 10px;
+      float: left;
+      i{
+        text-align: center;
+        margin: auto;
+        color: rgb(168, 168, 168);
+        &.active{
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+// 3RD SECTION
+
+.rd-section{
+  margin-top: 80px;
+  div{
+    margin: 0 0 10px 10px;
+    background-size: cover;
+    width: 190px;
+    height: 190px;
+    border-radius: 5px;
+  }
+  .st-tp{
+    background-image: url(../../images/mainPage/pizza-4.jpg);
+  }
+  .nd-tp{
+    background-image: url(../../images/mainPage/pizza-5.jpg);
+  }
+  .rd-tp{
+    background-image: url(../../images/mainPage/pizza-6.jpg);
+  }
+  .st-bt{
+    background-image: url(../../images/mainPage/pizza-7.jpg);
+  }
+  .nd-bt{
+    background-image: url(../../images/mainPage/pizza-8.jpg);
+  }
+  .rd-bt{
+    background-image: url(../../images/mainPage/pizza-9.jpg);
+  }
+}

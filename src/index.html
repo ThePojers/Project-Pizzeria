@@ -17,7 +17,7 @@
     <div class="container">
       <div class="header__wrapper">
         <div class="logo">
-          <h1 class="logo__title"><span>Mamma</span>Mia!</h1>
+          <a href="#main"><h1 class="logo__title"><span>Mamma</span>Mia!</h1></a>
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
         <div class="main-nav">
@@ -67,6 +67,9 @@
     </section>
     <section id="booking">
       <div class="booking-wrapper container"></div>
+    </section>
+    <section id="main">
+      <div class="main-page"></div>
     </section>
   </div>
 
@@ -241,6 +244,53 @@
         </div>
 
     </article> <!-- .product -->
+  </script>
+
+  <script id="template-main-page" type="text/x-handlebars-template">
+    <div class="main-con-page container">
+
+      <div class="row st-section">
+        <div class="col-6 order-pic">
+        <p>ORDER ONLINE</p>
+        </div>
+        <div class="col-6 book-pic">
+          <p>BOOK A TABLE</p>
+        </div>
+        <div class="col-12 opening-hours">
+          <p class="upper-text">OPENING HOURS:</p>
+          <p class="lower-text">TUE-SUN,12PM-12AM</p>
+        </div>
+      </div>
+
+      <div class="row nd-section">
+        <div class="col-4 square-pic"></div>
+        <div class="col-8 commentary">
+          <div class="first-comment">
+            <h3>AMAZING SERVICE</h3>
+            <p>Nam bibendum orci vel porttitor egestas. Sed in ligula nec ex pulvinar varius. 
+              Vestibulum condimentum elit eu faucibus porta. Sed vulputate rutrum varius. Nulla facilisi.</p>
+            <p>-Margaret Osborne</p>
+          </div>
+        </div>
+        <div class="col-12 circles">
+          <ul>
+            <li><i class="fas fa-circle"></i></li>
+            <li><i class="fas fa-circle"></i></li>
+            <li><i class="fas fa-circle"></i></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row rd-section">
+        <div class="col-3 st-tp"></div>
+        <div class="col-3 nd-tp"></div>
+        <div class="col-3 rd-tp"></div>
+        <div class="col-3 st-bt"></div>
+        <div class="col-3 nd-bt"></div>
+        <div class="col-3 rd-bt"></div>
+      </div>
+    </div>
+
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
