@@ -20,13 +20,13 @@
           <a href="#main"><h1 class="logo__title"><span>Mamma</span>Mia!</h1></a>
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
-        <div class="main-nav">
+        <!-- <div class="main-nav">
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
-        </div>
-        <div id="cart" class="cart">
+        </div> -->
+        <div id="cart" class="cart non-active">
           <div class="cart__summary">
-            <span class="cart__total-number">5</span>
+            <span class="cart__total-number">0</span>
             <span class="cart__total-price">Total price: $<strong>0</strong></span>
             <i class="fas fa-chevron-down"></i>
             <i class="fas fa-shopping-cart cart__icon"></i>
@@ -251,10 +251,12 @@
 
       <div class="row st-section">
         <div class="col-6 order-pic">
-        <p>ORDER ONLINE</p>
+        <a href="#order" class="links"><p>ORDER ONLINE</p></a>
+        <p class="hidden-hover">Delicious food delivered to your door</p>
         </div>
         <div class="col-6 book-pic">
-          <p>BOOK A TABLE</p>
+          <a href="#booking" class="links"><p>BOOK A TABLE</p></a>
+          <p class="hidden-hover">Discover the real Italian style</p>
         </div>
         <div class="col-12 opening-hours">
           <p class="upper-text">OPENING HOURS:</p>
@@ -271,6 +273,18 @@
               Vestibulum condimentum elit eu faucibus porta. Sed vulputate rutrum varius. Nulla facilisi.</p>
             <p>-Margaret Osborne</p>
           </div>
+          <div class="nd-comment">
+            <h3>PIZZA MIA MUCHO ALDENTE</h3>
+            <p>Nam bibendum orci vel porttitor egestas. Sed in ligula nec ex pulvinar varius. 
+              Vestibulum condimentum elit eu faucibus porta. Sed vulputate rutrum varius. Nulla facilisi.</p>
+            <p>-Json Soul</p>
+          </div>
+          <div class="rd-comment">
+            <h3>MAMMAMIA WHAT A FOOD</h3>
+            <p>Nam bibendum orci vel porttitor egestas. Sed in ligula nec ex pulvinar varius. 
+              Vestibulum condimentum elit eu faucibus porta. Sed vulputate rutrum varius. Nulla facilisi.</p>
+            <p>-Jeremy Boost</p>
+          </div>
         </div>
         <div class="col-12 circles">
           <ul>
@@ -282,12 +296,48 @@
       </div>
 
       <div class="row rd-section">
-        <div class="col-3 st-tp"></div>
-        <div class="col-3 nd-tp"></div>
-        <div class="col-3 rd-tp"></div>
-        <div class="col-3 st-bt"></div>
-        <div class="col-3 nd-bt"></div>
-        <div class="col-3 rd-bt"></div>
+
+        <div class="col-3 st-tp rd-con-pic">
+          <div class="icons">
+            <a href="#/main"><i class="fas fa-heart"></i></a>
+            <a href="#/main"><i class="fas fa-share-alt"></i></a>
+          </div>
+        </div>
+
+        <div class="col-3 nd-tp rd-con-pic">
+          <div class="icons">
+            <a href="#/main"><i class="fas fa-heart"></i></a>
+            <a href="#/main"><i class="fas fa-share-alt"></i></a>
+          </div>
+        </div>
+
+        <div class="col-3 rd-tp rd-con-pic">
+          <a href="#/main"><div class="icons">
+            <a href="#/main"> <i class="fas fa-heart"></i></a>
+              <a href="#/main"><i class="fas fa-share-alt"></i></a>
+          </div>
+        </div>
+
+        <div class="col-3 st-bt rd-con-pic">
+          <div class="icons">
+            <a href="#/main"><i class="fas fa-heart"></i></a>
+            <a href="#/main"><i class="fas fa-share-alt"></i></a>
+          </div>
+        </div>
+
+        <div class="col-3 nd-bt rd-con-pic">
+          <div class="icons">
+            <a href="#/main"><i class="fas fa-heart"></i></a>
+            <a href="#/main"><i class="fas fa-share-alt"></i></a>
+          </div>
+        </div>
+
+        <div class="col-3 rd-bt rd-con-pic">
+          <div class="icons">
+            <a href="#/main"><i class="fas fa-heart"></i></a>
+            <a href="#/main"><i class="fas fa-share-alt"></i></a>
+          </div>
+        </div>
       </div>
     </div>
 

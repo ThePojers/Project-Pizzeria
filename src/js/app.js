@@ -19,14 +19,15 @@ const app = {
   },
   initPages: function(){
     const thisApp = this;
+   
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
-    thisApp.mainNav = document.querySelector(select.nav.mainNav);
+    // thisApp.mainNav = document.querySelector(select.nav.mainNav);
     thisApp.mainLink = document.querySelector(select.nav.mainPageLink);
-
+    console.log(thisApp.mainNav);
     const idFromHash = window.location.hash.replace('#/', '');
     
-    let pageMatchingHash = thisApp.pages[0].id;
+    let pageMatchingHash = thisApp.pages[2].id;
     for(let page of thisApp.pages){
       if(page.id == idFromHash){
         pageMatchingHash = page.id;
@@ -44,6 +45,7 @@ const app = {
     });
 
     for(let link of thisApp.navLinks){
+      console.log('DUPA');
       link.addEventListener('click', function(){
         const clickedElement = this;
         event.preventDefault();
@@ -51,6 +53,7 @@ const app = {
         const id = clickedElement.getAttribute('href').replace('#', '');
         // run thisApp.activatePage with that ID
         thisApp.activatePage(id);
+        document.getElementById('cart').classList.remove(classNames.pages.nonActive);
 
         // change URL 
         window.location.hash = '#/' + id;
@@ -68,8 +71,8 @@ const app = {
     /* add class "active" to matching links, remove from non-matching */
     thisApp.mainLink.addEventListener('click', function(){
       // delete from header navbars
-      thisApp.mainNav.classList.add(classNames.pages.nonActive);
-      thisApp.mainNav.classList.remove('main-nav');
+      // thisApp.mainNav.classList.add(classNames.pages.nonActive);
+      // thisApp.mainNav.classList.remove('main-nav');
       // delete from header cart 
       document.getElementById('cart').classList.add(classNames.pages.nonActive);
     });
@@ -102,11 +105,12 @@ const app = {
   },
   init: function(){
     const thisApp = this;
+    thisApp.initMainPages();
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
-    thisApp.initMainPages();
+    
   },
   initCart: function(){
     

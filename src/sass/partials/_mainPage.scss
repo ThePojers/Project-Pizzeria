@@ -21,22 +21,30 @@
 
 // 1ST SECTION 
 
-.st-section p {
-  text-align: center;
-  margin-top: 40px;
-  color: white;
-  font-size: 25px;
-  font-family: $font-header;
-
-  &.lower-text{
-    font-size: 15px;
-    margin: 0 0 0 0;
-    margin-top: 1px;
-    font-family: $font-text
+.st-section {
+  .links{
+    text-decoration: none;
   }
+  p {
+    text-align: center;
+    margin-top: 40px;
+    color: white;
+    font-size: 25px;
+    font-family: $font-header;
+    margin-bottom: 0;
 
-  &.upper-text {
-    margin: 30px 0 0 0;
+
+
+    &.lower-text{
+      font-size: 15px;
+      margin: 0 0 0 0;
+      margin-top: 1px;
+      font-family: $font-text
+    }
+
+    &.upper-text {
+      margin: 30px 0 0 0;
+    }
   }
 }
 
@@ -48,6 +56,22 @@
   height: 120px;
   border-radius: 5px;
   margin-right: 3px;
+  .hidden-hover{
+    opacity: 0;
+    transform: translate(0, 250%);
+    margin: 0;
+    font-size: 13px;
+    font-family: $font-text;
+  }
+  &:hover{
+    p{
+      transform: translate(0, -50%);
+      transition: all 0.5s;
+    }
+    .hidden-hover{
+      opacity: 1;
+    }
+  }
 }
 
 .book-pic {
@@ -56,6 +80,22 @@
   width: 300px;
   height: 120px;
   border-radius: 5px;
+  .hidden-hover{
+    opacity: 0;
+    transform: translate(0, 250%);
+    margin: 0;
+    font-size: 13px;
+    font-family: $font-text;
+  }
+  &:hover{
+    p{
+      transform: translate(0, -50%);
+      transition: all 0.5s;
+    }
+    .hidden-hover{
+      opacity: 1;
+    }
+  }
 }
 
 .opening-hours {
@@ -79,11 +119,27 @@
   margin-top: 110px;
 }
 
+ .commentary div{
+  opacity: 0;
+ 	-webkit-transition: opacity 10s ease-in-out;
+	-moz-transition: opacity 10s ease-in-out;
+	-ms-transition: opacity 10s ease-in-out;
+	-o-transition: opacity 10s ease-in-out;
+	transition: opacity 10s ease-in-out;
+}
+
+  div .dupa{
+  	-webkit-transition: opacity 10s ease-in-out;
+	-moz-transition: opacity 10s ease-in-out;
+	-ms-transition: opacity 10s ease-in-out;
+	-o-transition: opacity 10s ease-in-out;
+	transition: opacity 10s ease-in-out;
+  opacity: 1;
+}
+
 .commentary {
   padding-left: 45px;
-
   h3{
-
     font-size: 14px;
   }
 }
@@ -112,15 +168,9 @@
 
 .rd-section{
   margin-top: 80px;
-  div{
-    margin: 0 0 10px 10px;
-    background-size: cover;
-    width: 190px;
-    height: 190px;
-    border-radius: 5px;
-  }
   .st-tp{
     background-image: url(../../images/mainPage/pizza-4.jpg);
+
   }
   .nd-tp{
     background-image: url(../../images/mainPage/pizza-5.jpg);
@@ -136,5 +186,57 @@
   }
   .rd-bt{
     background-image: url(../../images/mainPage/pizza-9.jpg);
+  }
+
+  .rd-con-pic{
+    
+    margin: 0 0 10px 10px;
+    background-size: cover;
+    width: 190px;
+    height: 190px;
+    border-radius: 5px;
+    &::before{
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      transition: all 0.5s;
+      opacity: 0;
+      background: black;
+    }
+    &:hover{
+      &::before{
+        content: "";
+        position: absolute;
+        width: 190px;
+        height: 190px;
+        
+        opacity: 0.2;
+        background: black;
+        
+      }
+      .icons{
+        opacity: 1;
+      }
+    }
+    a{
+      color: white;
+    }
+    .icons{
+      position: relative;
+      opacity: 0;
+      font-size: 25px;
+      margin: 45% 0 0 40%;
+      color: white;
+      transition: all 0.5s;
+
+      .fa-heart{
+        transition: all 0.5s;
+
+        &:hover {
+          color: $color-danger;
+        }
+      }
+    }
   }
 }
