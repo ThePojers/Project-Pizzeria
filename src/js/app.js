@@ -24,7 +24,6 @@ const app = {
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
     // thisApp.mainNav = document.querySelector(select.nav.mainNav);
     thisApp.mainLink = document.querySelector(select.nav.mainPageLink);
-    console.log(thisApp.mainNav);
     const idFromHash = window.location.hash.replace('#/', '');
     
     let pageMatchingHash = thisApp.pages[2].id;
@@ -45,7 +44,6 @@ const app = {
     });
 
     for(let link of thisApp.navLinks){
-      console.log('DUPA');
       link.addEventListener('click', function(){
         const clickedElement = this;
         event.preventDefault();

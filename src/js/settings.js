@@ -81,6 +81,14 @@ export const select = {
     mainNav: '.main-nav',
     mainPageLink: '.logo a',
   },
+  carousel: {
+    first: '.first-comment',
+    second: '.nd-comment',
+    third: '.rd-comment',
+    dotOne: '.dot1',
+    dotTwo: '.dot2',
+    dotThree: '.dot3',
+  }
 };
 
 export const classNames = {
@@ -103,6 +111,10 @@ export const classNames = {
     active: 'active',
     nonActive: 'non-active',
   },
+  carousel: {
+    active: 'active',
+    dotActive: 'dot',
+  }
 };
 
 export const settings = {

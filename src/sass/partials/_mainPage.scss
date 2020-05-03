@@ -119,45 +119,56 @@
   margin-top: 110px;
 }
 
- .commentary div{
-  opacity: 0;
- 	-webkit-transition: opacity 10s ease-in-out;
-	-moz-transition: opacity 10s ease-in-out;
-	-ms-transition: opacity 10s ease-in-out;
-	-o-transition: opacity 10s ease-in-out;
-	transition: opacity 10s ease-in-out;
-}
-
-  div .dupa{
-  	-webkit-transition: opacity 10s ease-in-out;
-	-moz-transition: opacity 10s ease-in-out;
-	-ms-transition: opacity 10s ease-in-out;
-	-o-transition: opacity 10s ease-in-out;
-	transition: opacity 10s ease-in-out;
-  opacity: 1;
-}
-
-.commentary {
+ .commentary{ 
   padding-left: 45px;
+  margin: -190px 0 0 200px;
+  position: relative;
+
+
+  .first-comment{
+    position: absolute;
+    opacity: 0;
+  }
+
+  .nd-comment{
+    opacity: 0;
+    position: absolute;
+  }
+  
+  .rd-comment{
+    opacity: 0;
+  }
+
   h3{
     font-size: 14px;
   }
+
+  div{
+    transition: all 0.5s ease-in-out;
+    
+    &.active{
+      opacity: 1;
+    }
+  }
 }
+
 
 .circles{
   ul{
-    margin-top: 30px;
+    margin-top: 20px;
     margin-left: 36%;
     list-style: none;
     li{
       margin-left: 10px;
       float: left;
       i{
+        font-size: 12px;
+        transition: all 0.5s ease-in-out;
         text-align: center;
         margin: auto;
         color: rgb(168, 168, 168);
-        &.active{
-          color: black;
+        &.dot{
+          color: rgb(73, 72, 72);
         }
       }
     }
