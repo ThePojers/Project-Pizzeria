@@ -17,7 +17,7 @@ class Booking {
     thisBooking.getData();
 
   }
-  getData(){
+  getData(checker){
     const thisBooking = this;
 
     const startDayParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.dataPicker.minDate);
@@ -64,6 +64,9 @@ class Booking {
         ]);
       })
       .then(function([bookings, eventsCurrent, eventsRepeat]){
+        if( checker == 1){
+          alert('Thanks for booking');
+        }
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
   }
@@ -132,7 +135,9 @@ class Booking {
     thisBooking.address = element.querySelector(select.booking.address);
     thisBooking.bookButton = element.querySelector(select.booking.button);
     thisBooking.waterStarter = element.querySelector(select.booking.waterStarter);
+    console.log(thisBooking.waterStarter);
     thisBooking.breadStarter = element.querySelector(select.booking.breadStarter);
+    console.log(thisBooking.breadStarter);
     thisBooking.peopleAmount = element.querySelector(select.booking.peopleAmountInput);
     thisBooking.hoursAmount = element.querySelector(select.booking.hoursAmountInput);
     thisBooking.table = [];
@@ -224,7 +229,13 @@ class Booking {
     
     thisBooking.bookButton.addEventListener('click', function(){
       event.preventDefault();
-      thisBooking.sendOrder();
+      console.log(thisBooking.table.length);
+      if(thisBooking.table.length > 0){
+        thisBooking.sendOrder();
+      } else {
+        alert('Please select table');
+      }
+
       
     });
 
@@ -244,14 +255,21 @@ class Booking {
         if(
           !thisBooking.allAvailable
           &&
-          thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
+          !thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
         ){
-          const dupa = 'dupa';
-          console.log(dupa);
-        } else {
           table.classList.add(classNames.booking.clickedTable);
-          thisBooking.table.push(tableId);
-          console.log('tutaj dodaje elementy', thisBooking.table);
+          if(thisBooking.table.indexOf(tableId) == -1){
+            thisBooking.table.push(tableId);
+            console.log('tutaj dodaje elementy', thisBooking.table);
+          }
+          console.log('nie dodałem elementu bo już jest ', thisBooking.table);
+        } else if (thisBooking.allAvailable == true){
+          
+          if(thisBooking.table.indexOf(tableId) == -1){
+            table.classList.add(classNames.booking.clickedTable);
+            thisBooking.table.push(tableId);
+          }
+          console.log('nie dodałem elementu bo już jest 2222222222', thisBooking.table);
         }
       });
     }
@@ -259,9 +277,8 @@ class Booking {
     thisBooking.waterStarter.addEventListener('click', function(){
       thisBooking.waterStarterChecker = !thisBooking.waterStarterChecker;
       if(thisBooking.waterStarterChecker == false ){
-        thisBooking.starters.splice(thisBooking.table.indexOf(thisBooking.water), 1);
+        thisBooking.starters.splice(thisBooking.starters.indexOf(thisBooking.water), 1);
       } else if(thisBooking.waterStarterChecker == true){
-        
         thisBooking.starters.push(thisBooking.water);
       }
     });
@@ -269,9 +286,8 @@ class Booking {
     thisBooking.breadStarter.addEventListener('click', function(){
       thisBooking.breadStarterChecker = !thisBooking.breadStarterChecker;
       if(thisBooking.breadStarterChecker == false ){
-        thisBooking.starters.splice(thisBooking.table.indexOf(thisBooking.bread), 1);
+        thisBooking.starters.splice(thisBooking.starters.indexOf(thisBooking.bread), 1);
       } else if(thisBooking.breadStarterChecker == true){
-        
         thisBooking.starters.push(thisBooking.bread);
       }
     });
@@ -282,7 +298,7 @@ class Booking {
   sendOrder(){
     const thisBooking = this;
     const url = settings.db.url + '/' + settings.db.booking;
-
+    const checker = 1;
     for(let tableId of thisBooking.table){
 
       thisBooking.tableId = tableId;
@@ -311,8 +327,9 @@ class Booking {
       return response.json();
     }).then(function(parsedResponse){
       console.log('parsedResponse', parsedResponse);
+      thisBooking.getData(checker);
+      thisBooking.updateDOM();
     });
-    setTimeout(function(){window.location.reload();}, 1000);
   }
   
 }
