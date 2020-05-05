@@ -83,8 +83,9 @@ export const select = {
   },
   carousel: {
     commentary: '.commentary div',
-    circles: '.main-page .circles ul li i',
-    containerCircle: '.main-page .circles ul li',
+    circles: ' .circles ul li i',
+    containerCircle: ' .circles ul li',
+    dotAmount: '.amount-of-comment'
   }
 };
 

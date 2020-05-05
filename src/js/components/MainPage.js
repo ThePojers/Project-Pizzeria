@@ -6,7 +6,7 @@ class MainPage {
 
   constructor(){
     const thisPage = this;
-    
+
     thisPage.renderInMenu();
     thisPage.getElement();
 
@@ -24,13 +24,23 @@ class MainPage {
   renderInMenu(){
 
     const thisPage = this;
-    // const dots = {
-    //   dot: 'fas fa-circle',
-    // };
-      
-    const dots = ['1','2'];
+    
+    const dotAmountElement = document.querySelector(select.carousel.dotAmount);
 
-    const generatedHTML = templates.mainPage(dots);
+    const dotsAmount = parseInt(dotAmountElement.getAttribute('id'));
+    console.log(dotsAmount);
+    thisPage.dotsy = {
+      dot: [],
+    };
+
+    for( let i = 0; i < dotsAmount; i++){
+      console.log(thisPage.dotsy.dot);
+      const dotNummer = i.toString();
+      thisPage.dotsy.dot.push(dotNummer);
+    }
+    
+
+    const generatedHTML = templates.mainPage(thisPage.dotsy);
     thisPage.element = utils.createDOMFromHTML(generatedHTML);
     const menuContainer = document.querySelector(select.containerOf.mainPage);
     menuContainer.appendChild(thisPage.element);
@@ -39,12 +49,15 @@ class MainPage {
   carousel(){
     const thisPage = this;
     thisPage.index = 1;
-    
     console.log(thisPage.dots);
     thisPage.commentary[0].classList.add(classNames.carousel.active);
     thisPage.dots[0].classList.add(classNames.carousel.dotActive);
+
+
+
+
     
-    
+
 
     setInterval(() => {
       for(let comment of thisPage.commentary){
