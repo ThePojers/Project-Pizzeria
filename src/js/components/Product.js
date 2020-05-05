@@ -6,7 +6,7 @@ import utils from '../utils.js';
 
 class Product {
   constructor(id, data){
-    const thisProduct = this;
+    const thisProduct = this; 
     thisProduct.id = id;
     thisProduct.data = data;
     thisProduct.renderInMenu();
