@@ -22,10 +22,10 @@ const app = {
    
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
-    // thisApp.mainNav = document.querySelector(select.nav.mainNav);
+    thisApp.mainNav = document.querySelectorAll(select.nav.mainNav);
     thisApp.mainLink = document.querySelector(select.nav.mainPageLink);
     const idFromHash = window.location.hash.replace('#/', '');
-    
+
     let pageMatchingHash = thisApp.pages[2].id;
     for(let page of thisApp.pages){
       if(page.id == idFromHash){
@@ -52,11 +52,15 @@ const app = {
         // run thisApp.activatePage with that ID
         thisApp.activatePage(id);
         document.getElementById('cart').classList.remove(classNames.pages.nonActive);
-
+        for(let mainLink of thisApp.mainNav){
+          mainLink.classList.remove(classNames.pages.nonActive);
+        }
         // change URL 
         window.location.hash = '#/' + id;
       });
     }
+    
+
   },
   activatePage: function(pageId){
     const thisApp = this;
@@ -69,17 +73,19 @@ const app = {
     /* add class "active" to matching links, remove from non-matching */
     thisApp.mainLink.addEventListener('click', function(){
       // delete from header navbars
-      // thisApp.mainNav.classList.add(classNames.pages.nonActive);
-      // thisApp.mainNav.classList.remove('main-nav');
+      for(let mainLink of thisApp.mainNav){
+        mainLink.classList.add(classNames.pages.nonActive);
+      }
       // delete from header cart 
       document.getElementById('cart').classList.add(classNames.pages.nonActive);
     });
-    // for(let link of  thisApp.navLinks){
-    //   link.classList.toggle(
-    //     classNames.nav.active,
-    //     link.getAttribute('href') == '#' + pageId
-    //   );
-    // }
+    for(let link of  thisApp.navLinks){
+      link.classList.toggle(
+        classNames.nav.active,
+        link.getAttribute('href') == '#' + pageId
+      );
+    }
+
 
     
   }, 

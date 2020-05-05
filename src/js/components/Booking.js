@@ -17,7 +17,8 @@ class Booking {
     thisBooking.getData();
 
   }
-  getData(checker){
+  
+  getData(){
     const thisBooking = this;
 
     const startDayParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.dataPicker.minDate);
@@ -64,9 +65,6 @@ class Booking {
         ]);
       })
       .then(function([bookings, eventsCurrent, eventsRepeat]){
-        if( checker == 1){
-          alert('Thanks for booking');
-        }
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
   }
@@ -149,11 +147,8 @@ class Booking {
     thisBooking.dom.dataPicker = element.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.hourPicker = element.querySelector(select.widgets.hourPicker.wrapper);
     thisBooking.dom.tables = element.querySelectorAll(select.booking.tables);
-    // thisBooking.dom.hourPickerInput = element.querySelector(select.widgets.hourPicker.input);
-    // thisBooking.dom.dataPickerInput = element.querySelector(select.widgets.datePicker.input);
-    
-
   }
+
   updateDOM(){
     const thisBooking = this;
 
@@ -187,24 +182,18 @@ class Booking {
         &&
         thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
       ){
-        // table.classList.remove(classNames.booking.clickedTable);
-        // table.removeAttribute('id');
-        // table.removeEventListener('click', thisBooking.clicked());
-        thisBooking.table.splice(thisBooking.table.indexOf(tableId), 1);
         table.classList.remove(classNames.booking.clickedTable);
         table.classList.add(classNames.booking.tableBooked);
 
       } else {
-        // table.id = tableId;
-        // table.classList.add(classNames.booking.clickedTable);
-        // table.addEventListener('click', thisBooking.clicked());
         table.classList.remove(classNames.booking.clickedTable);
         table.classList.remove(classNames.booking.tableBooked);
       }
-
-      console.log('TU JEST RESET', thisBooking.table);
     }
+    thisBooking.table = [];
+    console.log('TU JEST RESET', thisBooking.table);
   }
+
   initWidgets(){
     const thisBooking = this;
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
@@ -217,6 +206,7 @@ class Booking {
     });
 
   }
+
   initAction(){
     const thisBooking = this;
     thisBooking.starters = [];
@@ -291,14 +281,12 @@ class Booking {
         thisBooking.starters.push(thisBooking.bread);
       }
     });
-
-
-
   }
+
   sendOrder(){
     const thisBooking = this;
     const url = settings.db.url + '/' + settings.db.booking;
-    const checker = 1;
+   
     for(let tableId of thisBooking.table){
 
       thisBooking.tableId = tableId;
@@ -327,10 +315,11 @@ class Booking {
       return response.json();
     }).then(function(parsedResponse){
       console.log('parsedResponse', parsedResponse);
-      thisBooking.getData(checker);
+      thisBooking.getData();
       thisBooking.updateDOM();
+      alert('Thanks for booking');
     });
   }
-  
+
 }
 export default Booking;

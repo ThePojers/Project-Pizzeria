@@ -78,7 +78,7 @@ export const select = {
   },
   nav: {
     links: '.links',
-    mainNav: '.main-nav',
+    mainNav: '.main-nav a',
     mainPageLink: '.logo a',
   },
   carousel: {
@@ -88,6 +88,8 @@ export const select = {
     dotOne: '.dot1',
     dotTwo: '.dot2',
     dotThree: '.dot3',
+    commentary: '.commentary div',
+    circles: '.circles ul li i',
   }
 };
 
@@ -114,6 +116,7 @@ export const classNames = {
   carousel: {
     active: 'active',
     dotActive: 'dot',
+    
   }
 };
 
