@@ -6,8 +6,8 @@ class MainPage {
 
   constructor(){
     const thisPage = this;
-
-    thisPage.renderInMenu();
+    thisPage.dotsGenerate();
+    
     thisPage.getElement();
 
 
@@ -21,28 +21,10 @@ class MainPage {
     thisPage.dots = document.querySelectorAll(select.carousel.circles);
     thisPage.dotContainer = document.querySelector(select.carousel.dotContainer);
   }
-  renderInMenu(){
-
+  renderInMenu(dotsObj){
     const thisPage = this;
 
-    const HtmlForDots = templates.mainPage();
-    const createHtml = utils.createDOMFromHTML(HtmlForDots);
-    const commentary = createHtml.querySelectorAll(select.carousel.commentary);
-
-
-    thisPage.dotsy = {
-      dot: [],
-    };
-
-    for( let i = 0; i < commentary.length; i++){
-      console.log(thisPage.dotsy.dot);
-      const dotNummer = i.toString();
-      thisPage.dotsy.dot.push(dotNummer);
-    }
-    
-
-
-    const generatedHTML = templates.mainPage(thisPage.dotsy);
+    const generatedHTML = templates.mainPage(dotsObj);
     thisPage.element = utils.createDOMFromHTML(generatedHTML);
     const menuContainer = document.querySelector(select.containerOf.mainPage);
     menuContainer.appendChild(thisPage.element);
@@ -54,12 +36,6 @@ class MainPage {
     console.log(thisPage.dots);
     thisPage.commentary[0].classList.add(classNames.carousel.active);
     thisPage.dots[0].classList.add(classNames.carousel.dotActive);
-
-
-
-
-    
-
 
     setInterval(() => {
       for(let comment of thisPage.commentary){
@@ -77,8 +53,28 @@ class MainPage {
         thisPage.index = 0;
       }
     }, 3000);
-    
   }
+
+
+  dotsGenerate(){
+    const thisPage = this;
+
+    const HtmlForDots = templates.mainPage();
+    const createHtml = utils.createDOMFromHTML(HtmlForDots);
+    const commentary = createHtml.querySelectorAll(select.carousel.commentary);
+
+    const dotsObj = {
+      dot: [],
+    };
+
+    for( let i = 0; i < commentary.length; i++){
+      
+      const dotNummer = i.toString();
+      dotsObj.dot.push(dotNummer);
+    }
+    thisPage.renderInMenu(dotsObj);
+  }
+
 }
 
 export default MainPage;
