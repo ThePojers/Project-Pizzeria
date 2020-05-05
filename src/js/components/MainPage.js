@@ -6,41 +6,45 @@ class MainPage {
 
   constructor(){
     const thisPage = this;
-
+    
     thisPage.renderInMenu();
     thisPage.getElement();
+
+
     thisPage.carousel();
   }
   getElement(){
     const thisPage = this;
     // Commentary elements
     thisPage.commentary = document.querySelectorAll(select.carousel.commentary);
-    console.log(thisPage.commentary);
-    thisPage.firstComment = document.querySelector(select.carousel.first);
-    thisPage.secondComment = document.querySelector(select.carousel.second);
-    thisPage.thirdComment = document.querySelector(select.carousel.third);
     // Dot elements
     thisPage.dots = document.querySelectorAll(select.carousel.circles);
-    console.log(thisPage.dots);
-    thisPage.dotOne = document.querySelector(select.carousel.dotOne);
-    thisPage.dotTwo = document.querySelector(select.carousel.dotTwo);
-    thisPage.dotThree = document.querySelector(select.carousel.dotThree);
-    // Set first active class and basic index
-    thisPage.dotOne.classList.add(classNames.carousel.dotActive);
-    thisPage.firstComment.classList.add(classNames.carousel.active);
-    
+    thisPage.dotContainer = document.querySelector(select.carousel.dotContainer);
   }
   renderInMenu(){
+
     const thisPage = this;
-    const generatedHTML = templates.mainPage();
+    // const dots = {
+    //   dot: 'fas fa-circle',
+    // };
+      
+    const dots = ['1','2'];
+
+    const generatedHTML = templates.mainPage(dots);
     thisPage.element = utils.createDOMFromHTML(generatedHTML);
     const menuContainer = document.querySelector(select.containerOf.mainPage);
     menuContainer.appendChild(thisPage.element);
   }
-
+  
   carousel(){
     const thisPage = this;
-    thisPage.index = 0;
+    thisPage.index = 1;
+    
+    console.log(thisPage.dots);
+    thisPage.commentary[0].classList.add(classNames.carousel.active);
+    thisPage.dots[0].classList.add(classNames.carousel.dotActive);
+    
+    
 
     setInterval(() => {
       for(let comment of thisPage.commentary){

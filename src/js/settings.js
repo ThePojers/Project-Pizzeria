@@ -82,14 +82,9 @@ export const select = {
     mainPageLink: '.logo a',
   },
   carousel: {
-    first: '.first-comment',
-    second: '.nd-comment',
-    third: '.rd-comment',
-    dotOne: '.dot1',
-    dotTwo: '.dot2',
-    dotThree: '.dot3',
     commentary: '.commentary div',
-    circles: '.circles ul li i',
+    circles: '.main-page .circles ul li i',
+    containerCircle: '.main-page .circles ul li',
   }
 };
 

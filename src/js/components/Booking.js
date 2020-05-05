@@ -101,7 +101,6 @@ class Booking {
   makeBooked(date, hour, duration, table){
     const thisBooking = this;
 
-
     if(typeof thisBooking.booked[date] == 'undefined'){
       thisBooking.booked[date] = {};
     }
@@ -119,7 +118,7 @@ class Booking {
 
       thisBooking.booked[date][hourBlock].push(table);
     }
-   
+    
   }
 
   render(element){
@@ -315,7 +314,9 @@ class Booking {
       return response.json();
     }).then(function(parsedResponse){
       console.log('parsedResponse', parsedResponse);
-      thisBooking.getData();
+      for(let table of thisBooking.table){
+        thisBooking.makeBooked(thisBooking.date, thisBooking.hourPicker.value, thisBooking.hoursAmount.value, table);
+      }
       thisBooking.updateDOM();
       alert('Thanks for booking');
     });

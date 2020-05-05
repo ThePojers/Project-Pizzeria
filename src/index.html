@@ -291,9 +291,9 @@
         </div>
         <div class="col-12 circles">
           <ul>
-            <li><i class="fas fa-circle dot1"></i></li>
-            <li><i class="fas fa-circle dot2"></i></li>
-            <li><i class="fas fa-circle dot3"></i></li>
+            {{#each dots}}
+            <li><i id="{{this}}" class="fas fa-circle"></i></li>
+            {{/each}}
           </ul>
         </div>
       </div>

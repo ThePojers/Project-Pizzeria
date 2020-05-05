@@ -22,7 +22,9 @@ const app = {
    
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    
     thisApp.mainNav = document.querySelectorAll(select.nav.mainNav);
+    
     thisApp.mainLink = document.querySelector(select.nav.mainPageLink);
     const idFromHash = window.location.hash.replace('#/', '');
 
