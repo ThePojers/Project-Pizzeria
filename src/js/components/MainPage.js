@@ -24,21 +24,23 @@ class MainPage {
   renderInMenu(){
 
     const thisPage = this;
-    
-    const dotAmountElement = document.querySelector(select.carousel.dotAmount);
 
-    const dotsAmount = parseInt(dotAmountElement.getAttribute('id'));
-    console.log(dotsAmount);
+    const HtmlForDots = templates.mainPage();
+    const createHtml = utils.createDOMFromHTML(HtmlForDots);
+    const commentary = createHtml.querySelectorAll(select.carousel.commentary);
+
+
     thisPage.dotsy = {
       dot: [],
     };
 
-    for( let i = 0; i < dotsAmount; i++){
+    for( let i = 0; i < commentary.length; i++){
       console.log(thisPage.dotsy.dot);
       const dotNummer = i.toString();
       thisPage.dotsy.dot.push(dotNummer);
     }
     
+
 
     const generatedHTML = templates.mainPage(thisPage.dotsy);
     thisPage.element = utils.createDOMFromHTML(generatedHTML);
